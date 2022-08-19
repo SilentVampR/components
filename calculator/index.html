@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Калькулятор расчета стоимости ремонта</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    .form {
+      margin: 0 auto;
+      max-width: 600px;
+    }
+
+    .form__buttons {
+      display: flex;
+      gap: 20px;
+      padding-bottom: 10px;
+      margin-bottom: 30px;
+      border-bottom: 1px solid rgba(51, 51, 51, 0.5);
+      box-sizing: border-box;
+    }
+
+    .form__title {
+      font-size: 18px;
+      line-height: 1.15;
+      margin: 0 0 20px;
+    }
+
+    .form__button-container {
+      display: flex;
+      align-items: center;
+    }
+
+    .form__option-title {
+      font-size: 16px;
+      line-height: 1.15;
+      margin: 0 10px 0 0;
+    }
+
+    .form__select-button {
+      border: none;
+      width: 30px;
+      height: 30px;
+      cursor: pointer;
+      background-image: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNTFweCIgaGVpZ2h0PSI1MXB4IiB2aWV3Qm94PSIwIDAgNzIuMjUgNzIuMjUiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+DQogIDxyZWN0IGZpbGw9Im5vbmUiIHdpZHRoPSI3Mi4yNSIgaGVpZ2h0PSI3Mi4yNSIvPg0KICA8cGF0aCBmaWxsPSIjODA4MDgwIiBkPSJNNTUuOTYgMTYuMjlsMCAzOS42NyAtMzkuNjcgMCAwIC0zOS42NyAzOS42NyAwem0tNC4yNSA0LjI1bC0zMS4xNyAwIDAgMzEuMTcgMzEuMTcgMCAwIC0zMS4xN3oiLz4NCjwvc3ZnPg0K);
+      background-repeat: no-repeat;
+      background-size: contain;
+      background-position: center;
+      background-color: transparent;
+    }
+
+    .form__select-button_selected {
+      background-image: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNTFweCIgaGVpZ2h0PSI1MXB4IiB2aWV3Qm94PSIwIDAgMTUuMzkgMTUuMzkiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+DQogIDxyZWN0IGZpbGw9Im5vbmUiIHdpZHRoPSIxNS4zOSIgaGVpZ2h0PSIxNS4zOSIvPg0KICA8cGF0aCBmaWxsPSIjODA4MDgwIiBkPSJNMTEuOTIgMy40N2wwIDguNDUgLTguNDUgMCAwIC04LjQ1IDguNDUgMHptLTAuOTEgMC45MWwtNi42MyAwIDAgNi42MyA2LjYzIDAgMCAtNi42M3oiLz4NCiAgPHBhdGggZmlsbD0iIzM1QjAwMCIgZD0iTTE0LjQzIDEuMDNjLTAuNzQsMC43NSAtMS41MSwxLjY1IC0yLjMzLDIuNjkgLTEuNDgsMS45IC0yLjYxLDMuNjcgLTMuMzksNS4zMSAtMC41NSwwLjM3IC0xLjIzLDAuNzkgLTEuNjksMS4yMyAtMC4yNiwtMC45MyAtMS4xMiwtMi45IC0xLjY3LC0zLjYxIC0wLjI5LC0wLjM4IC0wLjYxLC0wLjYzIC0wLjk3LC0wLjc2IDAuNjEsLTAuNjQgMS4xNiwtMC45NiAxLjY3LC0wLjk2IDAuNDQsMCAwLjkyLDAuNTkgMS40NSwxLjc3bDAuMjYgMC41OWMwLjk2LC0xLjYxIDIuMTksLTMuMTcgMy42OCwtNC42OSAwLjg0LC0wLjg1IDEuNjYsLTEuNTggMi40NywtMi4yMSAwLjM3LC0wLjAxIDAuNzMsMC4yMSAwLjUyLDAuNjR6Ii8+DQo8L3N2Zz4NCg==);
+    }
+
+    .form__select-button:hover {}
+  </style>
+</head>
+
+<body>
+  <form class="form">
+    <fieldset class="form__field">
+      <div class="form__item" data-type="required">
+        <h2 class="form__title">Выберите тип</h2>
+        <div class="form__buttons">
+          <div class="form__button-container">
+            <p class="form__option-title">Квартира</p>
+            <button class="form__select-button form__select-button_selected"></button>
+          </div>
+          <div class="form__button-container">
+            <p class="form__option-title">Коттедж</p>
+            <button class="form__select-button"></button>
+          </div>
+        </div>
+      </div>
+      <div class="form__item" data-type="required">
+        <h2 class="form__title">Выберите стены</h2>
+        <div class="form__buttons">
+          <div class="form__button-container">
+            <p class="form__option-title">Кирпич</p>
+            <button class="form__select-button form__select-button_selected"></button>
+          </div>
+          <div class="form__button-container">
+            <p class="form__option-title">Пеноблок</p>
+            <button class="form__select-button"></button>
+          </div>
+          <div class="form__button-container">
+            <p class="form__option-title">Газоблок</p>
+            <button class="form__select-button"></button>
+          </div>
+          <div class="form__button-container">
+            <p class="form__option-title">Панели</p>
+            <button class="form__select-button"></button>
+          </div>
+        </div>
+      </div>
+      <div class="form__item" data-type="required">
+        <h2 class="form__title">Выберите тип</h2>
+        <div class="form__buttons">
+          <div class="form__button-container">
+            <p class="form__option-title">Новостройка</p>
+            <button class="form__select-button form__select-button_selected"></button>
+          </div>
+          <div class="form__button-container">
+            <p class="form__option-title">Вторичка</p>
+            <button class="form__select-button"></button>
+          </div>
+        </div>
+      </div>
+      <div class="form__item" data-type="numbers">
+        <h2 class="form__title">Размеры</h2>
+        <div class="form__buttons">
+          <div class="form__button-container">
+            <p class="form__option-title">Площадь дома</p>
+            <input class="form__input" name="square">
+          </div>
+          <div class="form__button-container">
+            <p class="form__option-title">Высота стен</p>
+            <input class="form__input" name="height">
+          </div>
+        </div>
+      </div>
+      <div class="form__item" data-type="required">
+        <h2 class="form__title">Монтаж Проводки</h2>
+        <div class="form__buttons">
+          <div class="form__button-container">
+            <p class="form__option-title">Да</p>
+            <button class="form__select-button"></button>
+          </div>
+          <div class="form__button-container">
+            <p class="form__option-title">Нет</p>
+            <button class="form__select-button form__select-button_selected"></button>
+          </div>
+        </div>
+      </div>
+      <div class="form__item" data-type="required">
+        <h2 class="form__title">Монтаж водоснабжения</h2>
+        <div class="form__buttons">
+          <div class="form__button-container">
+            <p class="form__option-title">Да</p>
+            <button class="form__select-button"></button>
+          </div>
+          <div class="form__button-container">
+            <p class="form__option-title">Нет</p>
+            <button class="form__select-button form__select-button_selected"></button>
+          </div>
+        </div>
+      </div>
+      <div class="form__item" data-type="required">
+        <h2 class="form__title">Радиаторы</h2>
+        <div class="form__buttons">
+          <div class="form__button-container">
+            <p class="form__option-title">Без замены</p>
+            <button class="form__select-button"></button>
+          </div>
+          <div class="form__button-container">
+            <p class="form__option-title">Замена</p>
+            <button class="form__select-button"></button>
+          </div>
+          <div class="form__button-container">
+            <p class="form__option-title">Монтаж в полость</p>
+            <button class="form__select-button"></button>
+          </div>
+        </div>
+      </div>
+      <div class="form__item" data-type="number">
+        <h2 class="form__title">Установка дверей</h2>
+        <div class="form__buttons">
+          <div class="form__button-container">
+            <p class="form__option-title">Количество</p>
+            <input class="form__input" name="doors" value="0" type="number">
+          </div>
+        </div>
+      </div>
+      <div class="form__item" data-type="selected">
+        <h2 class="form__title">Пол</h2>
+        <div class="form__buttons">
+          <div class="form__button-container">
+            <p class="form__option-title">Ламинат</p>
+            <button class="form__select-button"></button>
+          </div>
+          <div class="form__button-container">
+            <p class="form__option-title">ПВХ</p>
+            <button class="form__select-button"></button>
+          </div>
+          <div class="form__button-container">
+            <p class="form__option-title">Линолеум</p>
+            <button class="form__select-button"></button>
+          </div>
+        </div>
+      </div>
+      <div class="form__item" data-type="selected">
+        <h2 class="form__title">Стены</h2>
+        <div class="form__buttons">
+          <div class="form__button-container">
+            <p class="form__option-title">Обои</p>
+            <button class="form__select-button"></button>
+          </div>
+          <div class="form__button-container">
+            <p class="form__option-title">Окраска</p>
+            <button class="form__select-button"></button>
+          </div>
+          <div class="form__button-container">
+            <p class="form__option-title">Декоративка</p>
+            <button class="form__select-button"></button>
+          </div>
+        </div>
+      </div>
+      <div class="form__item" data-type="numbers">
+        <h2 class="form__title">Площадь</h2>
+        <div class="form__buttons">
+          <div class="form__button-container">
+            <p class="form__option-title">Ванной</p>
+            <input class="form__input" name="bathroom" value="0" type="number">
+          </div>
+        </div>
+        <div class="form__buttons">
+          <div class="form__button-container">
+            <p class="form__option-title">Балкона</p>
+            <input class="form__input" name="balcony" value="0" type="number">
+          </div>
+        </div>
+      </div>
+
+    </fieldset>
+
+
+    <fieldset class="form__field">
+      <input type="checkbox" class="form__input form__input_type_checkbox" hidden name="type">
+      <input type="checkbox" class="form__input form__input_type_checkbox" hidden name="env_type">
+      <input type="checkbox" class="form__input form__input_type_checkbox" hidden name="wall_type">
+      <input type="checkbox" class="form__input form__input_type_checkbox" hidden name="square">
+      <input type="checkbox" class="form__input form__input_type_checkbox" hidden name="height">
+      <input type="checkbox" class="form__input form__input_type_checkbox" hidden name="electric">
+      <input type="checkbox" class="form__input form__input_type_checkbox" hidden name="water">
+      <input type="checkbox" class="form__input form__input_type_checkbox" hidden name="radiators">
+      <input type="checkbox" class="form__input form__input_type_checkbox" hidden name="doors">
+      <input type="checkbox" class="form__input form__input_type_checkbox" hidden name="floor">
+      <input type="checkbox" class="form__input form__input_type_checkbox" hidden name="walls">
+      <input type="checkbox" class="form__input form__input_type_checkbox" hidden name="bathroom">
+      <input type="checkbox" class="form__input form__input_type_checkbox" hidden name="balcony">
+      <input type="checkbox" class="form__input form__input_type_checkbox" hidden name="balcony_square">
+    </fieldset>
+  </form>
+</body>
+
+</html>

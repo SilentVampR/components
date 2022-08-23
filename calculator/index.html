@@ -325,17 +325,22 @@
       ['balcony', 0],
       ['balcony_square', 0]
     ]);
-    function digit(input) {
+    /* Функция преобразования ввода - оставляем только циферки и точку вместо запятой */
+    const digit = (input) => {
       input.value = input.value.replace(/[^\.\,\d]+/ig, '').replace(/[\.\,]+/ig, '.');
       return false;
     };
+    /* Функиция извлечения данных из ассоциативного массива defaultData */
+    const data = (type) => {
+      return defaultData.get(type);
+    }
     const form = document.querySelector('.form');
-    form.reset();
+    form.reset(); // Сбрасываю форму, чтобы ее данные совпадали с данными по умолчанию. Создавать генератор форм на основе даннх по умолчанию не планировал пока
     const inputList = Array.from(form.querySelectorAll('.form__input'));
     const sumField = form.querySelector('.form__total-sum');
-    const calculate = (e) => {
+    const calculate = (e) => { // немного перенасыщенная функция, надо бы разбить на разные, но в данном проекте переиспользование не планируется. Обрабатываем события, считаем все данные по формуле и выводим результат налету
       e.preventDefault();
-      if (e.target.nodeName === "BUTTON") {
+      if (e.target.nodeName === "BUTTON") { //События по кнопкам отрабатываем отдельно
         const formItem = e.target.closest('.form__item');
         formItemList = Array.from(formItem.querySelectorAll('.form__select-button'));
         formItemList.forEach(item => {
@@ -372,14 +377,11 @@
             defaultData.set(extraInput.dataset.name, e.target.dataset.value);
           }
         }
-      } else if (e.type === 'keyup' && e.target.nodeName === "INPUT") {
+      } else if (e.type === 'keyup' && e.target.nodeName === "INPUT") { //События по инпутам тоже отрабатываем отдельно
         digit(e.target);
         if (e.target.dataset.name) {
           defaultData.set(e.target.dataset.name, Number(e.target.value));
         }
-      }
-      const data = (type) => {
-        return defaultData.get(type);
       }
       const formula = (data('type')
         + data('type_env')
@@ -394,7 +396,6 @@
         + data('rad_count') * data('rad')
         + data('doors') * data('doors_count')
         + data('balcony_square') * data('balcony');
-
       sumField.textContent = formula.toFixed(2);
     }
     inputList.forEach(item => {

@@ -309,7 +309,7 @@
     const defaultData = new Map([
       ['type', 5000],
       ['type_walls', 0],
-      ['type_env', 870],
+      ['type_env', -200],
       ['square', 0],
       ['height', 2.7],
       ['electric', 0],
@@ -325,8 +325,6 @@
       ['balcony', 0],
       ['balcony_square', 0]
     ]);
-    //console.log(defaultData);
-    //console.log('-------------------------------');
     function digit(input) {
       input.value = input.value.replace(/[^\.\,\d]+/ig, '').replace(/[\.\,]+/ig, '.');
       return false;
@@ -374,14 +372,12 @@
             defaultData.set(extraInput.dataset.name, e.target.dataset.value);
           }
         }
-        //console.log(formItem.dataset.type);
       } else if (e.type === 'keyup' && e.target.nodeName === "INPUT") {
         digit(e.target);
         if (e.target.dataset.name) {
           defaultData.set(e.target.dataset.name, Number(e.target.value));
         }
       }
-      //console.log(defaultData);
       const data = (type) => {
         return defaultData.get(type);
       }
@@ -399,20 +395,7 @@
         + data('doors') * data('doors_count')
         + data('balcony_square') * data('balcony');
 
-      /*const buttonSelectedList = Array.from(form.querySelectorAll('.form__select-button_selected'));
-      const inputCurrentList = Array.from(form.querySelectorAll('.form__input'));
-      let inputTotal = 0;
-      inputCurrentList.forEach(item => {
-        inputTotal = inputTotal + Number(item.value);
-      })
-      let buttonsTotal = 0;
-      buttonSelectedList.forEach(item => {
-        buttonsTotal = buttonsTotal + Number(item.dataset.value);
-      })
-      let sumTotal = inputTotal + buttonsTotal;*/
       sumField.textContent = formula.toFixed(2);
-      //console.log(sumTotal);
-      /*console.log(e.target);*/
     }
     inputList.forEach(item => {
       item.addEventListener('keyup', calculate)

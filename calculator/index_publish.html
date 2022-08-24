@@ -18,7 +18,8 @@
       max-width: 600px;
       position: relative;
       padding: 50px 0 0;
-      box-sizing: border-box;
+      -webkit-box-sizing: border-box;
+              box-sizing: border-box;
     }
 
     @media screen and (max-width: 640px) {
@@ -28,21 +29,31 @@
     }
 
     .form__buttons {
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -ms-flexbox;
       display: flex;
       gap: 20px;
       min-height: 48px;
-      align-items: center;
-      flex-wrap: wrap;
+      -webkit-box-align: center;
+      -webkit-align-items: center;
+          -ms-flex-align: center;
+              align-items: center;
+      -webkit-flex-wrap: wrap;
+          -ms-flex-wrap: wrap;
+              flex-wrap: wrap;
       padding-bottom: 10px;
       margin-bottom: 30px;
       border-bottom: 1px solid rgba(51, 51, 51, 0.5);
-      box-sizing: border-box;
+      -webkit-box-sizing: border-box;
+              box-sizing: border-box;
     }
 
     .form__input {
       padding: 10px 10px 10px 10px;
       border: none;
-      box-sizing: border-box;
+      -webkit-box-sizing: border-box;
+              box-sizing: border-box;
       width: 70px;
       text-align: center;
       background-color: #f0f0f0;
@@ -55,8 +66,14 @@
     }
 
     .form__button-container {
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -ms-flexbox;
       display: flex;
-      align-items: center;
+      -webkit-box-align: center;
+      -webkit-align-items: center;
+          -ms-flex-align: center;
+              align-items: center;
     }
 
     .form__button-container_hidden {
@@ -89,7 +106,9 @@
       background-color: #046850;
       color: #fff;
       padding: 20px;
-      box-sizing: border-box;
+      -webkit-box-sizing: border-box;
+              box-sizing: border-box;
+      position: -webkit-sticky;
       position: sticky;
       bottom: 0;
       right: 0;
@@ -306,102 +325,7 @@
     </div>
   </form>
   <script>
-    const defaultData = new Map([
-      ['type', 5000],
-      ['type_walls', 0],
-      ['type_env', -200],
-      ['square', 0],
-      ['height', 2.7],
-      ['electric', 0],
-      ['water', 0],
-      ['floor', 0],
-      ['rad', 0],
-      ['rad_count', 0],
-      ['doors', 0],
-      ['doors_count', 0],
-      ['walls', 0],
-      ['bath', 20000],
-      ['bath_square', 0],
-      ['balcony', 0],
-      ['balcony_square', 0]
-    ]);
-    /* Функция преобразования ввода - оставляем только циферки и точку вместо запятой */
-    const digit = (input) => {
-      input.value = input.value.replace(/[^\.\,\d]+/ig, '').replace(/[\.\,]+/ig, '.');
-      return false;
-    };
-    /* Функиция извлечения данных из ассоциативного массива defaultData */
-    const data = (type) => {
-      return defaultData.get(type);
-    }
-    const form = document.querySelector('.form');
-    form.reset(); // Сбрасываю форму, чтобы ее данные совпадали с данными по умолчанию. Создавать генератор форм на основе даннх по умолчанию не планировал пока
-    const inputList = Array.from(form.querySelectorAll('.form__input'));
-    const sumField = form.querySelector('.form__total-sum');
-    const calculate = (e) => { // немного перенасыщенная функция, надо бы разбить на разные, но в данном проекте переиспользование не планируется. Обрабатываем события, считаем все данные по формуле и выводим результат налету
-      e.preventDefault();
-      if (e.target.nodeName === "BUTTON") { //События по кнопкам отрабатываем отдельно
-        const formItem = e.target.closest('.form__item');
-        formItemList = Array.from(formItem.querySelectorAll('.form__select-button'));
-        formItemList.forEach(item => {
-          if (item === e.target) {
-            if (e.target.classList.contains('form__select-button_selected')) {
-              e.target.classList.remove('form__select-button_selected');
-              defaultData.set(formItem.dataset.name, 0);
-            } else {
-              e.target.classList.add('form__select-button_selected');
-              if (formItem.dataset.name) {
-                defaultData.set(formItem.dataset.name, Number(e.target.dataset.value));
-              }
-            }
-          } else {
-            item.classList.remove('form__select-button_selected')
-          }
-        })
-        if (formItem.dataset.type === 'required') {
-          e.target.classList.add('form__select-button_selected');
-          if (formItem.dataset.name) {
-            defaultData.set(formItem.dataset.name, Number(e.target.dataset.value));
-          }
-        }
-        if (e.target.dataset.switch) {
-          const extraField = formItem.querySelector('.form__button-container_type_input');
-          const extraInput = extraField.querySelector('.form__input');
-          if (e.target.dataset.switch === "show") {
-            if (extraField.classList.contains('form__button-container_hidden')) {
-              extraField.classList.remove('form__button-container_hidden');
-            }
-          } else {
-            extraField.classList.add('form__button-container_hidden');
-            extraInput.value = e.target.dataset.value;
-            defaultData.set(extraInput.dataset.name, e.target.dataset.value);
-          }
-        }
-      } else if (e.type === 'keyup' && e.target.nodeName === "INPUT") { //События по инпутам тоже отрабатываем отдельно
-        digit(e.target);
-        if (e.target.dataset.name) {
-          defaultData.set(e.target.dataset.name, Number(e.target.value));
-        }
-      }
-      const formula = (data('type')
-        + data('type_env')
-        + data('type_walls')
-        + data('electric')
-        + data('water')
-        + data('walls')
-        + data('floor'))
-        * data('square')
-        * (data('height') <= 2.7 ? 1 : 1.1)
-        + data('bath_square') * data('bath')
-        + data('rad_count') * data('rad')
-        + data('doors') * data('doors_count')
-        + data('balcony_square') * data('balcony');
-      sumField.textContent = formula.toFixed(2);
-    }
-    inputList.forEach(item => {
-      item.addEventListener('keyup', calculate)
-    })
-    form.addEventListener('click', calculate);
+    (()=>{const e=new Map([["type",5e3],["type_walls",0],["type_env",-200],["square",0],["height",2.7],["electric",0],["water",0],["floor",0],["rad",0],["rad_count",0],["doors",0],["doors_count",0],["walls",0],["bath",2e4],["bath_square",0],["balcony",0],["balcony_square",0]]),t=t=>e.get(t),a=document.querySelector(".form");a.reset();const r=Array.from(a.querySelectorAll(".form__input")),s=a.querySelector(".form__total-sum"),o=a=>{if(a.preventDefault(),"BUTTON"===a.target.nodeName){const t=a.target.closest(".form__item");if(formItemList=Array.from(t.querySelectorAll(".form__select-button")),formItemList.forEach((r=>{r===a.target?a.target.classList.contains("form__select-button_selected")?(a.target.classList.remove("form__select-button_selected"),e.set(t.dataset.name,0)):(a.target.classList.add("form__select-button_selected"),t.dataset.name&&e.set(t.dataset.name,Number(a.target.dataset.value))):r.classList.remove("form__select-button_selected")})),"required"===t.dataset.type&&(a.target.classList.add("form__select-button_selected"),t.dataset.name&&e.set(t.dataset.name,Number(a.target.dataset.value))),a.target.dataset.switch){const r=t.querySelector(".form__button-container_type_input"),s=r.querySelector(".form__input");"show"===a.target.dataset.switch?r.classList.contains("form__button-container_hidden")&&r.classList.remove("form__button-container_hidden"):(r.classList.add("form__button-container_hidden"),s.value=a.target.dataset.value,e.set(s.dataset.name,a.target.dataset.value))}}else"keyup"===a.type&&"INPUT"===a.target.nodeName&&((r=a.target).value=r.value.replace(/[^\.\,\d]+/gi,"").replace(/[\.\,]+/gi,"."),a.target.dataset.name&&e.set(a.target.dataset.name,Number(a.target.value)));var r;const o=(t("type")+t("type_env")+t("type_walls")+t("electric")+t("water")+t("walls")+t("floor"))*t("square")*(t("height")<=2.7?1:1.1)+t("bath_square")*t("bath")+t("rad_count")*t("rad")+t("doors")*t("doors_count")+t("balcony_square")*t("balcony");s.textContent=o.toFixed(2)};r.forEach((e=>{e.addEventListener("keyup",o)})),a.addEventListener("click",o)})();
   </script>
 </body>
 

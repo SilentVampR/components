@@ -10,6 +10,7 @@
     .page {
       margin: 0;
       padding: 0;
+      font-family: Arial, Helvetica, sans-serif;
     }
 
     .page__wrapper {
@@ -19,10 +20,10 @@
 
     .video {
       display: grid;
-      grid-template-columns: repeat(6, 1fr);
+      grid-template-columns: repeat(10, 1fr);
       grid-template-areas:
-        "a a   a a   b b"
-        "c c   d d   d d";
+        "a a a a a a b b b b"
+        "c c c c c d d d d d";
       gap: 20px;
       padding: 20px;
     }
@@ -62,14 +63,20 @@
       top: 20px;
       right: 20px;
       z-index: 2;
+      opacity: 0.5;
+      transition: opacity 0.4s ease-in-out;
+    }
+
+    .video__button:hover {
+      opacity: 0.8;
     }
 
     .video__button_type_play {
       background-image: url(./images/play_button.svg);
     }
 
-    .video__button_type_pause {
-      background-image: url(./images/pause_button.svg);
+    .video__button_type_stop {
+      background-image: url(./images/stop_button.svg);
     }
 
     .video__content {
@@ -84,11 +91,31 @@
       opacity: 1;
     }
 
+    .video__text {
+      position: absolute;
+      bottom: 20px;
+      left: 20px;
+      margin: 0;
+      font-size: 18px;
+      line-height: 1.15;
+      color: white;
+      /*text-shadow: 2px 2px 3px #000;*/
+      transition: opacity 0.5s linear;
+    }
+
+    .video__text_inactive {
+      opacity: 0;
+    }
+
     @media screen and (max-width: 800px) {
       .video {
         display: flex;
         flex-direction: column;
         grid-template-areas: unset;
+      }
+
+      .video__text {
+        font-size: 16px;
       }
     }
   </style>
@@ -99,6 +126,7 @@
     <template id="video-container">
       <div class="video__container">
         <button class="video__button video__button_type_play"></button>
+        <p class="video__text"></p>
         <video class="video__content" loop></video>
       </div>
     </template>
@@ -109,11 +137,13 @@
     const videoList = [
       {
         'video': './images/uggi.mp4',
-        'image': './images/uggi.jpg',
+        'image': './images/uggi_video_1.jpg',
+        'text': 'Лучше не бывает',
       },
       {
         'video': '',
         'image': './images/uggi.jpg',
+        'text': 'Мягко как в раю',
       },
       {
         'video': './images/uggi.mp4',
@@ -145,15 +175,19 @@
             const button = e.target;
             const videoContainer = e.target.closest('.video__container');
             const videoContent = videoContainer.querySelector('.video__content');
+            const videoText = videoContainer.querySelector('.video__text');
             if (button.classList.contains('video__button_type_play')) {
               button.classList.remove('video__button_type_play');
-              button.classList.add('video__button_type_pause');
+              button.classList.add('video__button_type_stop');
               videoContent.classList.add('video__content_active');
+              videoText.classList.add('video__text_inactive');
               videoContent.play();
             } else {
-              button.classList.remove('video__button_type_pause');
+              button.classList.remove('video__button_type_stop');
               button.classList.add('video__button_type_play');
               videoContent.classList.remove('video__content_active');
+              videoText.classList.remove('video__text_inactive');
+              setTimeout(() => videoContent.load(), 500);
             }
           }
 
@@ -166,6 +200,10 @@
             this._element.style.backgroundImage = `url(${config.image})`;
             const button = this._element.querySelector('.video__button');
             const videoContent = this._element.querySelector('.video__content');
+            const text = this._element.querySelector('.video__text');
+            if (config.text && config.text.length > 0) {
+              text.textContent = config.text;
+            }
             if (config.video && config.video.length > 0) {
               this._setEventListeners();
               videoContent.src = config.video;
@@ -180,7 +218,7 @@
         const videoElement = new Video('#video-container');
 
         videoList.forEach(item => {
-          video.prepend(videoElement.generateElement(item));
+          video.append(videoElement.generateElement(item));
         })
       }
     }

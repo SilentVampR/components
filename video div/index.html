@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Video div</title>
+  <style>
+    .page {
+      margin: 0;
+      padding: 0;
+    }
+
+    .page__wrapper {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .video {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      grid-template-areas:
+        "a a   a a   b b"
+        "c c   d d   d d";
+      gap: 20px;
+    }
+
+    .video__container {
+      width: 100%;
+      height: 250px;
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      justify-content: flex-end;
+      position: relative;
+      grid-area: a;
+    }
+
+    .video__container:nth-child(2n) {
+      grid-area: b;
+    }
+
+    .video__container:nth-child(3n) {
+      grid-area: c;
+    }
+
+    .video__container:nth-child(4n) {
+      grid-area: d;
+    }
+
+    .video__button {
+      width: 31px;
+      height: 31px;
+      background-size: contain;
+      background-position: center;
+      background-color: transparent;
+      border: none;
+      cursor: pointer;
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      z-index: 2;
+    }
+
+    .video__button_type_play {
+      background-image: url(./images/play_button.svg);
+    }
+
+    .video__button_type_pause {
+      background-image: url(./images/pause_button.svg);
+    }
+
+    .video__content {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0;
+      transition: opacity 0.5s linear;
+    }
+
+    .video__content_active {
+      opacity: 1;
+    }
+  </style>
+</head>
+
+<body class="page">
+  <div class="page__wrapper">
+    <template id="video-container">
+      <div class="video__container">
+        <button class="video__button video__button_type_play"></button>
+        <video class="video__content" loop></video>
+      </div>
+    </template>
+    <div class="video">
+    </div>
+  </div>
+  <script>
+    const videoList = [
+      {
+        'video': './images/uggi.mp4',
+        'image': './images/uggi.jpg',
+      },
+      {
+        'video': '',
+        'image': './images/uggi.jpg',
+      },
+      {
+        'video': './images/uggi.mp4',
+        'image': './images/uggi.jpg',
+      },
+      {
+        'video': './images/uggi.mp4',
+        'image': './images/uggi.jpg',
+      }
+    ]
+    if (videoList.length > 0) {
+      const video = document.querySelector('.video');
+      if (video) {
+        const Video = class {
+          constructor(templateSelector) {
+            this._templateSelector = templateSelector;
+          }
+
+          _getTemplate() {
+            const videoElement = document
+              .querySelector(this._templateSelector)
+              .content
+              .querySelector('.video__container')
+              .cloneNode(true);
+            return videoElement;
+          }
+
+          _toggleVideo = (e) => {
+            const button = e.target;
+            const videoContainer = e.target.closest('.video__container');
+            const videoContent = videoContainer.querySelector('.video__content');
+            if (button.classList.contains('video__button_type_play')) {
+              button.classList.remove('video__button_type_play');
+              button.classList.add('video__button_type_pause');
+              videoContent.classList.add('video__content_active');
+              videoContent.play();
+            } else {
+              button.classList.remove('video__button_type_pause');
+              button.classList.add('video__button_type_play');
+              videoContent.classList.remove('video__content_active');
+            }
+          }
+
+          _setEventListeners = () => {
+            this._element.querySelector('.video__button').addEventListener('click', this._toggleVideo);
+          }
+
+          generateElement = (config) => {
+            this._element = this._getTemplate();
+            this._element.style.backgroundImage = `url(${config.image})`;
+            const button = this._element.querySelector('.video__button');
+            const videoContent = this._element.querySelector('.video__content');
+            if (config.video && config.video.length > 0) {
+              this._setEventListeners();
+              videoContent.src = config.video;
+            } else {
+              button.remove();
+              videoContent.remove();
+            }
+            return this._element;
+          }
+        }
+
+        const videoElement = new Video('#video-container');
+
+        videoList.forEach(item => {
+          video.prepend(videoElement.generateElement(item));
+        })
+      }
+    }
+  </script>
+</body>
+
+</html>

@@ -24,6 +24,7 @@
         "a a   a a   b b"
         "c c   d d   d d";
       gap: 20px;
+      padding: 20px;
     }
 
     .video__container {
@@ -82,6 +83,14 @@
     .video__content_active {
       opacity: 1;
     }
+
+    @media screen and (max-width: 800px) {
+      .video {
+        display: flex;
+        flex-direction: column;
+        grid-template-areas: unset;
+      }
+    }
   </style>
 </head>
 
@@ -115,7 +124,7 @@
         'image': './images/uggi.jpg',
       }
     ]
-    if (videoList.length > 0) {
+    if (videoList.length > 0 && videoList.length % 2 === 0) {
       const video = document.querySelector('.video');
       if (video) {
         const Video = class {

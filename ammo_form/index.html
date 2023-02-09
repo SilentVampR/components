@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Отправить заявку нашим менеджерам</title>
+  <title>GET YOUR PHUKET REQUEST</title>
   <link rel="stylesheet" href="./vendor/styles/normalize.css">
   <link rel="stylesheet" href="./css/styles.css">
 </head>
@@ -15,177 +15,80 @@
     <header class="header">
       <a href="#" class="logo"></a>
       <div class="header__info">
-        <h1 class="header__title">НАЗВАНИЕ АГЕНТСТВА</h1>
-        <p class="header__subtitle">Слоган, если есть</p>
-        <p class="header__text"><a href="tel:" class="phone-link">+66999999999</a> Имя менеджера</p>
-        <p class="header__text"><a href="tel:" class="phone-link">+66999999999</a> Имя менеджера</p>
+        <h1 class="header__title" title="Оставь свою заявку на Пхукет">GET YOUR PHUKET REQUEST</h1>
+        <!--<p class="header__subtitle">Слоган, если есть</p>-->
+        <ul class="header__links">
+          <li class="header__link">
+            <a href="tel:" class="phone-link">+66999999999</a>
+          </li>
+          <li class="header__link">
+            <a href="tel:" class="phone-link">+66999999999</a>
+          </li>
+          <li class="header__link">
+            <a href="tel:" class="phone-link">+66999999999</a>
+          </li>
+          <li class="header__link">
+            <a href="tel:" class="phone-link">+66999999999</a>
+          </li>
+        </ul>
       </div>
     </header>
     <main class="main">
       <form action="" method="post" name="form" class="form">
         <fieldset class="form__container">
-          <h2 class="form__title">Давайте познакомимся!</h2>
-          <p class="form__subtitle">Мы обработаем ваш запрос, найдем самые подходящие варианты
-            и&nbsp;сразу&nbsp;с&nbsp;вами&nbsp;свяжемся!
-          </p>
-
-          <label for="username" class="form__label">
-            <span class="form__label-text form__label-text_required">Как к вам обращаться:</span>
-            <input class="form__input" maxlength="35" name="username" placeholder="Укажите ФИО или просто ваше имя"
-              required="required" size="35" type="text">
-          </label>
-          <label for="Phone" class="form__label">
-            <span class="form__label-text form__label-text_required">Номер телефона:</span>
+          <h2 class="form__title">Заполните форму</h2>
+          <p class="form__subtitle">Чтобы мы&nbsp;могли подобрать для&nbsp;вас наилучшие&nbsp;предложения</p>
+          <div class="form__input-container">
+            <p class="form__label-text form__label-text_required">Как к вам обращаться:</p>
+            <input class="form__input form__input_type_name" maxlength="35" name="username"
+              placeholder="Укажите ФИО или просто ваше имя" required="required" type="text"
+              pattern="[a-zA-Zа-яА-Я -]{1,}">
+            <p class="form__text-error"></p>
+          </div>
+          <div class="form__input-container">
+            <p class="form__label-text form__label-text_required">Номер телефона для связи:</p>
             <input class="form__input" maxlength="16" name="Phone" placeholder="+7 999 333-22-22" required="required"
-              type="tel">
-          </label>
-          <label for="ConnectWay" class="form__label form__label_type_checkbox">
+              type="tel" pattern="[0-9 + - ()]{1,}">
+            <p class="form__text-error"></p>
+          </div>
+          <div class="form__input-container">
+            <p class="form__label-text">Связь&nbsp;по:</p>
+            <ul class="form__checkboxes">
+              <li class="form__checkbox-container">
+                <button name="wa" class="form__checkbox form__checkbox_type_wa" type="button"></button>
+                <span class="form__checkbox-text">WhatsApp</span>
+              </li>
+              <li class="form__checkbox-container">
+                <button name="tg" class="form__checkbox form__checkbox_type_tg" type="button"></button>
+                <span class="form__checkbox-text">Telegram</span>
+              </li>
+              <li class="form__checkbox-container">
+                <button name="phone" class="form__checkbox form__checkbox_type_phone" type="button"></button>
+                <span class="form__checkbox-text">Только телефон</span>
+              </li>
+            </ul>
             <div class="form__checkbox-container">
-              <span class="form__label-text">Связь по:</span>
-              <button class="form__checkbox form__checkbox_type_wa form__checkbox_selected"></button><span
-                class="form__checkbox-text">WhatsApp</span>
-              <button class="form__checkbox form__checkbox_type_tg"></button><span
-                class="form__checkbox-text">Telegram</span>
-              <button class="form__checkbox form__checkbox_type_phone"></button><span
-                class="form__checkbox-text">Телефон</span>
+              <p class="form__text-error"></p>
+              <input name="wa" type="checkbox" class="form__input form__input_type_checkbox">
+              <input name="tg" type="checkbox" class="form__input form__input_type_checkbox">
+              <input name="phone" type="checkbox" class="form__input form__input_type_checkbox">
             </div>
-            <input name="wa" type="checkbox" class="form__input form__input_type_checkbox">
-            <input name="tg" type="checkbox" class="form__input form__input_type_checkbox">
-            <input name="phone" type="checkbox" class="form__input form__input_type_checkbox">
-          </label>
-          <label for="reference" class="form__label">
-            <span class="form__label-text">Откуда о нас узнали:</span>
-            <select class="form__input" name="Reference">
-              <option value="0">-выберите из списка-</option>
-              <option value="1">Соцсети</option>
-              <option value="2">Рекомендация</option>
-              <option value="3">Поисковые сайты</option>
-              <option value="4">Прочее</option>
-            </select>
-          </label>
-          <label for="" class="form__label">
-            <span class="form__label-text">Электронная почта:</span>
-            <input class="form__input" maxlength="30" name="Email" placeholder="если нет мессенджера" size="20"
-              type="email">
-          </label>
-        </fieldset>
-        <fieldset class="form__container">
-          <h2 class="form__title">Расскажите, что вы ищете?</h2>
-          <p class="form__subtitle">Чтобы мы не перезванивали переспрашивая всё это, а сразу начинали подбирать жилье
-            для вас!</p>
-          <label for="" class="form__label">
-            <span class="form__label-text">Примерные даты:</span>
-            <input class="form__input" name="date1" required="required" type="date">
-            <span>-</span>
-            <input class="form__input" name="date2" required="required" type="date">
-          </label>
-          <label for="" class="form__label">
-            <span class="form__label-text">Примерный бюджет/мес:</span>
-            <input class="form__input form__input_type_number" name="min" size="5" type="number" value="">
-            <span>-</span>
-            <input class="form__input form__input_type_number" name="max" size="5" type="number" required="required">
-            <select class="form__input" name="currency" required="required">
-              <option value="840">USD</option>
-              <option value="978">EUR</option>
-              <option selected="selected" value="643">RUB</option>
-              <option value="764">THB</option>
-            </select>
-          </label>
-          <label for="" class="form__label">
-            <span class="form__label-text">Количество спален</span>
-            <input class="form__input form__input_type_short-number" name="bdrmin" type="number" value="1">
-            <span>-</span>
-            <input class="form__input form__input_type_short-number" name="bdrmax" type="number">
-          </label>
-          <label for="" class="form__label">
-            <span class="form__label-text">Количество взрослых:</span>
-            <input class="form__input form__input_type_short-number" name="adults" size="4" type="number" value="2">
-            <span class="form__label-text">детей:</span>
-            <input class="form__input form__input_type_short-number" name="children" size="4" type="number">
-          </label>
-        </fieldset>
-        <fieldset class="form__container">
-          <h2 class="form__title">Дополнительно</h2>
-          <p class="form__subtitle">Если у вас найдется минутка - давайте попробуем сузить круг поиска!</p>
-          <label for="" class="form__label">
-            <div class="form__checkbox-container form__checkbox-container_column">
-              <div class="form__checkbox-container">
-                <button class="form__checkbox form__checkbox_type_villa"></button>
-                <span class="form__checkbox-text">Вилла</span>
-              </div>
-              <div class="form__checkbox-container">
-                <button class="form__checkbox form__checkbox_type_aparts"></button>
-                <span class="form__checkbox-text">Апартаменты (в апартаментах не допускается проживание с
-                  животными)</span>
-              </div>
-              <div class="form__checkbox-container">
-                <button class="form__checkbox form__checkbox_type_pool"></button>
-                <span class="form__checkbox-text">С бассейном</span>
-              </div>
-              <div class="form__checkbox-container">
-                <button class="form__checkbox form__checkbox_type_seaview"></button>
-                <span class="form__checkbox-text">С видом на море</span>
-              </div>
-              <div class="form__checkbox-container">
-                <button class="form__checkbox form__checkbox_type_pets"></button>
-                <span class="form__checkbox-text">С домашними животными</span>
-              </div>
-              <div class="form__checkbox-container">
-                <button class="form__checkbox form__checkbox_type_school"></button>
-                <span class="form__checkbox-text">Школа рядом</span>
-              </div>
-              <div class="form__checkbox-container">
-                <button class="form__checkbox form__checkbox_type_kgarden"></button>
-                <span class="form__checkbox-text">Детский сад рядом</span>
-              </div>
+            <div class="form__input-container">
+              <p class="form__label-text">Электронная почта:</p>
+              <input class="form__input" maxlength="30" name="Email" placeholder="если нет мессенджера" size="20"
+                type="email">
+              <p class="form__text-error"></p>
             </div>
-            <input name="Villa" type="checkbox" class="form__input form__input_type_checkbox">
-            <input name="Aparts" type="checkbox" class="form__input form__input_type_checkbox">
-            <input name="Pool" type="checkbox" class="form__input form__input_type_checkbox">
-            <input name="View" type="checkbox" class="form__input form__input_type_checkbox">
-            <input name="Pets" type="checkbox" class="form__input form__input_type_checkbox">
-            <input name="School" type="checkbox" class="form__input form__input_type_checkbox">
-            <input name="KGarden" type="checkbox" class="form__input form__input_type_checkbox">
-          </label>
-          <label for="region" class="form__label">
-            <span class="form__label-text">Желаемый район:</span>
-            <select class="form__input" name="Region">
-              <option value="0">Самый лучший!</option>
-              <option value="1">Bangtao/Laguna</option>
-              <option value="2">Layan</option>
-              <option value="3">Surin</option>
-            </select>
-          </label>
-          <p>Мы обладаем экспертными знаниями о недвижимости в районах Bangtao/Laguna, Layan, Surin и в первую очередь
-            рекомендуем именно их. Мы потратили на изучение районов Пхукета более 10 лет и готовы сэкономить Вам время!
-          </p>
         </fieldset>
         <fieldset class="form__container">
-          <h2 class="form__title">Нужен ли Вам автомобиль?</h2>
-          <label for="" class="form__label">
-            <div class="form__checkbox-container form__checkbox-container_column">
-              <div class="form__checkbox-container">
-                <button class="form__checkbox form__checkbox_type_car"></button>
-                <span class="form__checkbox-text">Да, нужен</span>
-              </div>
-              <div class="form__checkbox-container form__checkbox-container_hidden">
-                <button class="form__checkbox form__checkbox_type_premium"></button>
-                <span class="form__checkbox-text">Авто премиум-сегмента</span>
-                <button class="form__checkbox form__checkbox_type_premium"></button>
-                <span class="form__checkbox-text">С детским креслом</span>
-              </div>
-            </div>
-            <input name="Rentcar" type="checkbox" class="form__input form__input_type_checkbox">
-            <input name="PremiumCar" type="checkbox" class="form__input form__input_type_checkbox">
-            <input name="Babyseat" type="checkbox" class="form__input form__input_type_checkbox">
-          </label>
+          <h2 class="form__title">Укажите все ваши&nbsp;пожелания</h2>
+          <div class="form__input-container">
+            <textarea class="form__input form__input_type_textarea" name="comment"
+              placeholder="В&nbsp;свободной форме - когда планируете приехать, вилла или апартаменты, количство спален, на сколько человек жилье, будут ли животные и так далее"></textarea>
+            <p class="form__text-error"></p>
+          </div>
         </fieldset>
-        <fieldset class="form__container">
-          <h2 class="form__title">Прочие пожелания</h2>
-          <p>Укажите все ваши пожелания (в свободной форме):</p>
-          <textarea class="form__input" cols="40" name="comment" rows="3"></textarea>
-        </fieldset>
-        <button class="form__button" name="buttn" type="submit" value="">Отправить заявку нашим менеджерам</button>
+        <button class="form__button" name="submit" type="submit" value="">Отправить заявку</button>
       </form>
     </main>
     <footer class="footer">
@@ -201,6 +104,119 @@
     } else {
       copyright.textContent = String.fromCharCode(169) + ' ' + curYear;
     }
+    class FormValidator {
+      constructor(settings, formElement) {
+        this._formElement = formElement;
+        this._settings = settings;
+        this._inputListArray = Array.from(this._formElement.querySelectorAll(this._settings.inputSelector));
+        this._checkboxListArray = Array.from(this._formElement.querySelectorAll(this._settings.checkboxSelector));
+        this._hiddenCheckboxListArray = Array.from(this._formElement.querySelectorAll(this._settings.hiddenCheckboxSelector));
+        this._formButton = this._formElement.querySelector(this._settings.submitButtonSelector);
+      }
+      _toggleInputError(inputElement, errorMessage) {
+        const inputContainer = inputElement.closest(this._settings.inputContainer);
+        const errorElement = inputContainer.querySelector(this._settings.errorText);
+        if (errorMessage) {
+          errorElement.textContent = errorMessage;
+          errorElement.classList.add(this._settings.errorClass);
+          inputElement.classList.add(this._settings.inputErrorClass);
+        } else {
+          errorElement.textContent = "";
+          errorElement.classList.remove(this._settings.errorClass);
+          inputElement.classList.remove(this._settings.inputErrorClass);
+        }
+      };
+
+      hideInputErrors() {
+        this._inputListArray.forEach((inputElement) => {
+          this._toggleInputError(inputElement);
+          this._changeButtonState();
+        })
+      }
+
+      _hideInputError(inputElement) {
+        this._toggleInputError(inputElement);
+      }
+
+      _checkInputValidity(inputElement) {
+        const inputIsNotValid = !inputElement.validity.valid;
+        if (inputIsNotValid) {
+          const errorMessage = inputElement.validationMessage;
+          this._toggleInputError(inputElement, errorMessage);
+        } else {
+          this._toggleInputError(inputElement);
+        }
+      }
+
+      _changeButtonState() {
+        const notValidElement = this._inputListArray.some(inputElement => !inputElement.validity.valid);
+        if (notValidElement) {
+          this._formButton.setAttribute('disabled', true);
+          this._formButton.classList.add(this._settings.inactiveButtonClass);
+        } else {
+          this._formButton.removeAttribute('disabled', true);
+          this._formButton.classList.remove(this._settings.inactiveButtonClass);
+        }
+      }
+
+      _toggleCheckboxState(checkbox) {
+        const checkboxName = checkbox.name;
+        this._hiddenCheckboxListArray.forEach(item => {
+          if (item.name == checkboxName) {
+            !item.checked ? item.checked = true : item.checked = false;
+          }
+        });
+        checkbox.classList.toggle('form__checkbox_selected');
+      }
+
+      _setEventListeners() {
+        this._formElement.addEventListener('submit', (evt) => {
+          evt.preventDefault();
+        })
+        this._changeButtonState();
+
+        const setInputValidity = (inputElement) => {
+          inputElement.addEventListener('blur', () => {
+            this._checkInputValidity(inputElement);
+            this._changeButtonState();
+          })
+        }
+        const hideErrors = (inputElement) => {
+          inputElement.addEventListener('focus', () => {
+            this._hideInputError(inputElement);
+          })
+        }
+        const setInputCheckbox = (inputElement) => {
+          if (inputElement.type == 'button' && inputElement.name != 'submit') {
+            inputElement.addEventListener('click', () => {
+              this._toggleCheckboxState(inputElement);
+
+            });
+          }
+        }
+        this._inputListArray.forEach(setInputValidity);
+        this._inputListArray.forEach(hideErrors);
+        this._checkboxListArray.forEach(setInputCheckbox);
+      }
+      enableValidation() {
+        this._setEventListeners();
+      }
+    }
+    const classNamesSettings = {
+      formSelector: '.form',
+      inputSelector: '.form__input',
+      checkboxSelector: '.form__checkbox',
+      submitButtonSelector: '.form__button',
+      hiddenCheckboxSelector: '.form__input_type_checkbox',
+      inactiveButtonClass: 'form__button_disabled',
+      inputErrorClass: 'form__input_state_not-valid',
+      errorClass: 'form__text-error_state_not-valid',
+      inputContainer: '.form__input-container',
+      errorText: '.form__text-error',
+    }
+    const form = document.querySelector(classNamesSettings.formSelector);
+    const validatorForProfileForm = new FormValidator(classNamesSettings, form);
+    validatorForProfileForm.enableValidation();
   </script>
 </body>
 

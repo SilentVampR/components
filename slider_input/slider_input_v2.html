@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Тестовый слайдер</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      /*user-select: none;*/
+    }
+
+    .slider {
+      margin: 100px auto 0;
+      width: 400px;
+    }
+
+    .slider__container {
+      height: 2px;
+      background-color: #333;
+      width: 200px;
+      margin: 10px 0;
+      position: relative;
+    }
+
+    .slider__button {
+      border-radius: 50%;
+      background-color: #0fa;
+      position: absolute;
+      width: 22px;
+      height: 22px;
+      left: -11px;
+      top: 50%;
+      transform: translateY(-50%);
+      border: none;
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="slider">
+    <div class="slider__container">
+      <button class="slider__button"></button>
+    </div>
+    <div class="counter">2.7</div>
+  </div>
+  <script>
+    const sliderContainer = document.querySelector('.slider__container');
+    const sliderButton = document.querySelector('.slider__button');
+    const counterField = document.querySelector('.counter');
+    let xPos = 0;
+    let mouse = false;
+    let keyboard = false;
+    let height = 2.7;
+
+    const minPos = -11;
+    const maxPos = 189;
+    const totalPos = 200;
+    let isMovedByMouse = false;
+
+    const heightList = new Map([
+      [-1, 2.7],
+      [0, 2.8],
+      [1, 2.9],
+      [2, 3.0],
+      [3, 3.1],
+      [4, 3.2],
+      [5, 3.3],
+      [6, 3.4],
+      [7, 3.5],
+      [8, 3.6],
+      [9, 3.7],
+    ]);
+
+    const getRes = (res) => {
+      return Math.floor((res / totalPos).toFixed(2) * 10);
+    }
+
+    const setMouse = (e) => {
+      mouse = true;
+      keyboard = false;
+      xPos = sliderButton.offsetLeft - e.clientX;
+    }
+    const unsetMouse = () => {
+      mouse = false;
+    }
+
+    const setKeyboard = () => {
+      if (isMovedByMouse) {
+        sliderButton.style.left = minPos + 'px';
+        counterField.textContent = heightList.get(-1);
+        isMovedByMouse = false;
+      }
+      keyboard = true;
+      mouse = false;
+      xPos = 20;
+    }
+    const unsetKeyboard = () => {
+      keyboard = false;
+    }
+
+    const between = (num, min, max) => {
+      return (num <= max && num >= min) ? true : false;
+    }
+
+    const moveByMouse = (e) => {
+      if (mouse && (e.type === 'mousemove' || e.type === 'pointermove')) {
+        isMovedByMouse = true;
+        const curPos = sliderButton.offsetLeft;
+        if (curPos >= minPos && curPos <= maxPos) {
+          const result = e.clientX + xPos;
+          if (result > minPos && result < maxPos) {
+            sliderButton.style.left = result + 'px';
+            height = heightList.get(getRes(sliderButton.offsetLeft));
+            counterField.textContent = height;
+          }
+        }
+      }
+    }
+
+    const moveByKeyboard = (e) => {
+      if (keyboard && e.type === 'keyup' && (e.key === 'ArrowRight' || e.key === 'ArrowLeft')) {
+        const curPos = sliderButton.offsetLeft;
+        if (curPos >= minPos && curPos <= maxPos) {
+          let result;
+          if (e.key === 'ArrowRight') {
+            result = e.target.offsetLeft + xPos;
+          } else if (e.key === 'ArrowLeft') {
+            result = e.target.offsetLeft - xPos;
+          }
+          if (result >= minPos && result <= maxPos) {
+            sliderButton.style.left = result + 'px';
+            height = heightList.get(getRes(result));
+            counterField.textContent = height;
+          }
+        }
+      }
+    }
+    sliderButton.addEventListener('pointerdown', setMouse, true);
+    document.addEventListener('pointerup', unsetMouse, true);
+    document.addEventListener('pointermove', moveByMouse, true);
+
+    sliderButton.addEventListener('keyup', setKeyboard, true);
+    sliderButton.addEventListener('focusout', unsetKeyboard, true);
+    document.addEventListener('keyup', moveByKeyboard, true);
+  </script>
+</body>
+
+</html>

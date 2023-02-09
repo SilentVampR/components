@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Отправить заявку нашим менеджерам</title>
+  <link rel="stylesheet" href="./vendor/styles/normalize.css">
+  <link rel="stylesheet" href="./css/styles.css">
+</head>
+
+<body class="page">
+  <div class="page-wrapper">
+    <header class="header">
+      <a href="#" class="logo"></a>
+      <div class="header__info">
+        <h1 class="header__title">НАЗВАНИЕ АГЕНТСТВА</h1>
+        <p class="header__subtitle">Слоган, если есть</p>
+        <p class="header__text"><a href="tel:" class="phone-link">+66999999999</a> Имя менеджера</p>
+        <p class="header__text"><a href="tel:" class="phone-link">+66999999999</a> Имя менеджера</p>
+      </div>
+    </header>
+    <main class="main">
+      <form action="" method="post" name="form" class="form">
+        <fieldset class="form__container">
+          <h2 class="form__title">Давайте познакомимся!</h2>
+          <p class="form__subtitle">Мы обработаем ваш запрос, найдем самые подходящие варианты
+            и&nbsp;сразу&nbsp;с&nbsp;вами&nbsp;свяжемся!
+          </p>
+
+          <label for="username" class="form__label">
+            <span class="form__label-text form__label-text_required">Как к вам обращаться:</span>
+            <input class="form__input" maxlength="35" name="username" placeholder="Укажите ФИО или просто ваше имя"
+              required="required" size="35" type="text">
+          </label>
+          <label for="Phone" class="form__label">
+            <span class="form__label-text form__label-text_required">Номер телефона:</span>
+            <input class="form__input" maxlength="16" name="Phone" placeholder="+7 999 333-22-22" required="required"
+              type="tel">
+          </label>
+          <label for="ConnectWay" class="form__label form__label_type_checkbox">
+            <div class="form__checkbox-container">
+              <span class="form__label-text">Связь по:</span>
+              <button class="form__checkbox form__checkbox_type_wa form__checkbox_selected"></button><span
+                class="form__checkbox-text">WhatsApp</span>
+              <button class="form__checkbox form__checkbox_type_tg"></button><span
+                class="form__checkbox-text">Telegram</span>
+              <button class="form__checkbox form__checkbox_type_phone"></button><span
+                class="form__checkbox-text">Телефон</span>
+            </div>
+            <input name="wa" type="checkbox" class="form__input form__input_type_checkbox">
+            <input name="tg" type="checkbox" class="form__input form__input_type_checkbox">
+            <input name="phone" type="checkbox" class="form__input form__input_type_checkbox">
+          </label>
+          <label for="reference" class="form__label">
+            <span class="form__label-text">Откуда о нас узнали:</span>
+            <select class="form__input" name="Reference">
+              <option value="0">-выберите из списка-</option>
+              <option value="1">Соцсети</option>
+              <option value="2">Рекомендация</option>
+              <option value="3">Поисковые сайты</option>
+              <option value="4">Прочее</option>
+            </select>
+          </label>
+          <label for="" class="form__label">
+            <span class="form__label-text">Электронная почта:</span>
+            <input class="form__input" maxlength="30" name="Email" placeholder="если нет мессенджера" size="20"
+              type="email">
+          </label>
+        </fieldset>
+        <fieldset class="form__container">
+          <h2 class="form__title">Расскажите, что вы ищете?</h2>
+          <p class="form__subtitle">Чтобы мы не перезванивали переспрашивая всё это, а сразу начинали подбирать жилье
+            для вас!</p>
+          <label for="" class="form__label">
+            <span class="form__label-text">Примерные даты:</span>
+            <input class="form__input" name="date1" required="required" type="date">
+            <span>-</span>
+            <input class="form__input" name="date2" required="required" type="date">
+          </label>
+          <label for="" class="form__label">
+            <span class="form__label-text">Примерный бюджет/мес:</span>
+            <input class="form__input form__input_type_number" name="min" size="5" type="number" value="">
+            <span>-</span>
+            <input class="form__input form__input_type_number" name="max" size="5" type="number" required="required">
+            <select class="form__input" name="currency" required="required">
+              <option value="840">USD</option>
+              <option value="978">EUR</option>
+              <option selected="selected" value="643">RUB</option>
+              <option value="764">THB</option>
+            </select>
+          </label>
+          <label for="" class="form__label">
+            <span class="form__label-text">Количество спален</span>
+            <input class="form__input form__input_type_short-number" name="bdrmin" type="number" value="1">
+            <span>-</span>
+            <input class="form__input form__input_type_short-number" name="bdrmax" type="number">
+          </label>
+          <label for="" class="form__label">
+            <span class="form__label-text">Количество взрослых:</span>
+            <input class="form__input form__input_type_short-number" name="adults" size="4" type="number" value="2">
+            <span class="form__label-text">детей:</span>
+            <input class="form__input form__input_type_short-number" name="children" size="4" type="number">
+          </label>
+        </fieldset>
+        <fieldset class="form__container">
+          <h2 class="form__title">Дополнительно</h2>
+          <p class="form__subtitle">Если у вас найдется минутка - давайте попробуем сузить круг поиска!</p>
+          <label for="" class="form__label">
+            <div class="form__checkbox-container form__checkbox-container_column">
+              <div class="form__checkbox-container">
+                <button class="form__checkbox form__checkbox_type_villa"></button>
+                <span class="form__checkbox-text">Вилла</span>
+              </div>
+              <div class="form__checkbox-container">
+                <button class="form__checkbox form__checkbox_type_aparts"></button>
+                <span class="form__checkbox-text">Апартаменты (в апартаментах не допускается проживание с
+                  животными)</span>
+              </div>
+              <div class="form__checkbox-container">
+                <button class="form__checkbox form__checkbox_type_pool"></button>
+                <span class="form__checkbox-text">С бассейном</span>
+              </div>
+              <div class="form__checkbox-container">
+                <button class="form__checkbox form__checkbox_type_seaview"></button>
+                <span class="form__checkbox-text">С видом на море</span>
+              </div>
+              <div class="form__checkbox-container">
+                <button class="form__checkbox form__checkbox_type_pets"></button>
+                <span class="form__checkbox-text">С домашними животными</span>
+              </div>
+              <div class="form__checkbox-container">
+                <button class="form__checkbox form__checkbox_type_school"></button>
+                <span class="form__checkbox-text">Школа рядом</span>
+              </div>
+              <div class="form__checkbox-container">
+                <button class="form__checkbox form__checkbox_type_kgarden"></button>
+                <span class="form__checkbox-text">Детский сад рядом</span>
+              </div>
+            </div>
+            <input name="Villa" type="checkbox" class="form__input form__input_type_checkbox">
+            <input name="Aparts" type="checkbox" class="form__input form__input_type_checkbox">
+            <input name="Pool" type="checkbox" class="form__input form__input_type_checkbox">
+            <input name="View" type="checkbox" class="form__input form__input_type_checkbox">
+            <input name="Pets" type="checkbox" class="form__input form__input_type_checkbox">
+            <input name="School" type="checkbox" class="form__input form__input_type_checkbox">
+            <input name="KGarden" type="checkbox" class="form__input form__input_type_checkbox">
+          </label>
+          <label for="region" class="form__label">
+            <span class="form__label-text">Желаемый район:</span>
+            <select class="form__input" name="Region">
+              <option value="0">Самый лучший!</option>
+              <option value="1">Bangtao/Laguna</option>
+              <option value="2">Layan</option>
+              <option value="3">Surin</option>
+            </select>
+          </label>
+          <p>Мы обладаем экспертными знаниями о недвижимости в районах Bangtao/Laguna, Layan, Surin и в первую очередь
+            рекомендуем именно их. Мы потратили на изучение районов Пхукета более 10 лет и готовы сэкономить Вам время!
+          </p>
+        </fieldset>
+        <fieldset class="form__container">
+          <h2 class="form__title">Нужен ли Вам автомобиль?</h2>
+          <label for="" class="form__label">
+            <div class="form__checkbox-container form__checkbox-container_column">
+              <div class="form__checkbox-container">
+                <button class="form__checkbox form__checkbox_type_car"></button>
+                <span class="form__checkbox-text">Да, нужен</span>
+              </div>
+              <div class="form__checkbox-container form__checkbox-container_hidden">
+                <button class="form__checkbox form__checkbox_type_premium"></button>
+                <span class="form__checkbox-text">Авто премиум-сегмента</span>
+                <button class="form__checkbox form__checkbox_type_premium"></button>
+                <span class="form__checkbox-text">С детским креслом</span>
+              </div>
+            </div>
+            <input name="Rentcar" type="checkbox" class="form__input form__input_type_checkbox">
+            <input name="PremiumCar" type="checkbox" class="form__input form__input_type_checkbox">
+            <input name="Babyseat" type="checkbox" class="form__input form__input_type_checkbox">
+          </label>
+        </fieldset>
+        <fieldset class="form__container">
+          <h2 class="form__title">Прочие пожелания</h2>
+          <p>Укажите все ваши пожелания (в свободной форме):</p>
+          <textarea class="form__input" cols="40" name="comment" rows="3"></textarea>
+        </fieldset>
+        <button class="form__button" name="buttn" type="submit" value="">Отправить заявку нашим менеджерам</button>
+      </form>
+    </main>
+    <footer class="footer">
+      <p class="footer__copyright"></p>
+    </footer>
+  </div>
+  <script>
+    let curDate = new Date();
+    let curYear = curDate.getFullYear();
+    let copyright = document.querySelector('.footer__copyright');
+    if (curYear != 2023) {
+      copyright.textContent = String.fromCharCode(169) + ' 2023-' + curYear;
+    } else {
+      copyright.textContent = String.fromCharCode(169) + ' ' + curYear;
+    }
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,32 @@
+@font-face {
+  font-family: "Artegra Sans";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("./ArtegraSans-Regular.woff") format("woff"),
+    url("./ArtegraSans-Regular.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Artegra Sans";
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("./ArtegraSans-Medium.woff") format("woff"),
+    url("./ArtegraSans-Medium.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Artegra Sans";
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("./ArtegraSans-SemiBold.woff") format("woff"),
+    url("./ArtegraSans-SemiBold.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Artegra Sans";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("./ArtegraSans-Bold.woff") format("woff"),
+    url("./ArtegraSans-Bold.woff2") format("woff2");
+}

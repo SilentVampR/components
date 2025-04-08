@@ -312,7 +312,7 @@ function initializeFormElements(config = {}) {
           options.classList.add(conf.optionsBlockActiveCN);
           container.classList.add("form__select_active");
           var form = e.target.closest("form");
-          var selectFieldsArr = form?.querySelectorAll(".field-select_active");
+          var selectFieldsArr = form.querySelectorAll(".field-select_active");
           if (selectFieldsArr.length > 0) {
             selectFieldsArr.forEach((sField) => {
               if (sField !== input) {

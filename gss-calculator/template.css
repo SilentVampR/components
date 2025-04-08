@@ -2,39 +2,33 @@
   box-sizing: border-box;
 }
 
-html {
+html:has(.form) {
   scroll-behavior: smooth;
   min-height: 100vh;
 }
 
-body {
+.form {
   font-family: "Artegra Sans", sans-serif;
   color: #2e2b30;
   font-size: 18px;
   font-weight: 400;
 }
 
-.hidden {
-  display: none !important;
-}
-
-p,
-h1,
-h2,
-h3,
-h4,
-ul,
-ol,
-figure,
-figcaption {
+.form p,
+.form h1,
+.form h2,
+.form h3,
+.form h4,
+.form ul,
+.form ol,
+.form figure,
+.form figcaption {
   margin: 0;
   padding: 0;
 }
 
-/* FORM */
-
-.form {
-  /* max-width: 650px; */
+.hidden {
+  display: none !important;
 }
 
 .form-content {

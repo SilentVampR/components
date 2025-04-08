@@ -121,7 +121,7 @@ figcaption {
   line-height: 1.4;
   border: none;
   outline: none;
-  background-color: #f3e3ff;
+  background-color: white;
   outline: 1px solid #7d55c7;
   min-height: 56px;
   transition: 0.3s;
@@ -441,9 +441,10 @@ html .form__options::-webkit-scrollbar-thumb {
   color: #4a25b8;
   text-align: center;
   cursor: pointer;
-  background: #f3e3ff;
+  background: white;
   border: 2px solid rgba(74, 37, 184, 0.4);
   border-radius: 10px;
+  transition: all 0.3s ease-in-out;
 }
 
 .form__button:hover {
@@ -523,7 +524,7 @@ html .form__options::-webkit-scrollbar-thumb {
   width: 20px;
   height: 20px;
   border: none;
-  background-color: #f3e3ff;
+  background-color: white;
   border-radius: 4px;
   border: 2px solid rgba(128, 149, 183, 0.2);
   box-sizing: border-box;
@@ -577,7 +578,7 @@ html .form__options::-webkit-scrollbar-thumb {
   height: 19px;
   border-radius: 50%;
   border: 2px solid #4a25b8;
-  background-color: #f3e3ff;
+  background-color: white;
   margin-left: -28px;
   transition: all 200ms ease-in-out;
   box-sizing: border-box;
@@ -723,7 +724,7 @@ main {
   max-width: 919px;
   padding: 80px 120px;
   border-radius: 20px;
-  background: #f3e3ff;
+  background: white;
   margin: 0 auto;
 }
 

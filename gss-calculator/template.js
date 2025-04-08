@@ -162,7 +162,7 @@ function setSpfToDefault(form) {
   });
   spfInput.value = spfInput.dataset.default ?? "";
   spfHiddenInput.value = spfHiddenInput.dataset.default ?? "";
-  spfInput.setAttribute("placeholder", "Выбери из списка");
+  spfInput.setAttribute("placeholder", "Выберите из списка");
 }
 
 function checkPackage(e) {
@@ -214,7 +214,7 @@ function checkRequired() {
             if (selectInput && selectWrapper) {
               if (
                 selectInput.value == "" ||
-                selectInput.value == "Выбери из списка"
+                selectInput.value == "Выберите из списка"
               ) {
                 isValid = false;
                 selectWrapper.classList.add("error");
